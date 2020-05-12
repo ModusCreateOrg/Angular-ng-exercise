@@ -1,0 +1,15 @@
+<ng-container *ngIf="(user$ | async) as user">
+  <ion-button class="detail-back-button" color="medium" (click)="back()">
+  <ion-icon name="arrow-back-outline" (click)="back()"></ion-icon>
+  </ion-button>
+  <ion-card class="user-detail-card">
+    <ng-container *ngIf="!user.avatar">
+        <ion-spinner name="dots"></ion-spinner>
+    </ng-container>
+    <img class="user-image" src={{user.avatar}}>
+    <ion-card-header class="user-detail-card">
+      <ion-card-title class="detail-card-title">{{user.first_name}} {{user.last_name}}</ion-card-title>
+      <ion-card-content class="detail-card-content">{{user.email}}</ion-card-content>
+    </ion-card-header>
+  </ion-card>
+</ng-container>

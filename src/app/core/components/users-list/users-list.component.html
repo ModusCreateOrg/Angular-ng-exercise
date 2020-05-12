@@ -1,0 +1,7 @@
+<ng-container *ngIf="(usersList$ | async) as users">
+<ion-card *ngFor="let user of users" scroll=true class="users-list">
+  <ion-card-content (click)="navigateToUser(user)">
+    {{user.first_name}} {{user.last_name}}
+  </ion-card-content>
+</ion-card>
+</ng-container>
