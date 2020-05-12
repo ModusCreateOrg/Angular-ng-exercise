@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
+import { AppService } from '../../services/app.service'
+
 
 @Component({
   selector: 'ng-e-app-content',
@@ -12,17 +14,19 @@ export class AppContentComponent implements OnInit {
     lastName: 'Ayaz'
   };
   isLoggedIn: boolean;
-  constructor() {}
+  constructor(
+    public appService: AppService
+  ) {}
 
   ngOnInit() {
-    this.isLoggedIn = false;
+    this.appService.isLoggedIn$.subscribe(value => this.isLoggedIn = value);
   }
 
   login() {
-    this.isLoggedIn = true;
+    this.appService.updateLoggedIn();
   }
 
   logout() {
-    this.isLoggedIn = false;
+    this.appService.updateLoggedOut();
   }
 }
